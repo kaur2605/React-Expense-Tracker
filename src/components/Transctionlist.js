@@ -1,19 +1,20 @@
 import React, { useContext } from 'react';
 import { GlobalContext } from '../context/GlobalState';
+import { Transction } from './Transaction';
 
 export default function Transctionlist() {
 
- let { transaction } = useContext(GlobalContext);
- console.log(transaction);
+ let { transactions } = useContext(GlobalContext);
+ console.log(transactions);
 
  return (
   <div>
    <h3>History</h3>
    <ul className="list">
-    {transaction.map(item => {
-     return <li className="minus">
-      {item.text} <span>-{item.amount}</span><button className="delete-btn">x</button>
-     </li>
+    {transactions.map(trans => {
+     return <Transction key={trans.id} trans={trans}>
+
+     </Transction>
 
     })}
 
