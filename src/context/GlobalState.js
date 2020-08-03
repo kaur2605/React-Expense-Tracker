@@ -5,12 +5,8 @@ import reducer from './reducer';
 const initalState = {
 
  transactions: [
-
-  { id: 1, text: 'Toys', amount: -200 },
-  { id: 2, text: 'Salary', amount: 300 },
-  { id: 3, text: 'Computer', amount: -1000 },
-  { id: 4, text: 'TV', amount: 1500 }
  ]
+
 }
 
 export const GlobalContext = createContext(initalState);
@@ -18,8 +14,19 @@ export const GlobalContext = createContext(initalState);
 export const GlobalProvider = ({ children }) => {
  const [state, dispatch] = useReducer(reducer, initalState)
 
+ function deletetrans(id) {
+
+  dispatch({ type: 'DELETE', payload: id })
+
+ }
+ function addtrans(trans) {
+
+  dispatch({ type: 'ADD', payload: trans })
+
+ }
+
  return (
-  <GlobalContext.Provider value={{ transactions: state.transactions }}>
+  <GlobalContext.Provider value={{ transactions: state.transactions, deletetrans, addtrans }}>
    {children}
   </GlobalContext.Provider>
  )
